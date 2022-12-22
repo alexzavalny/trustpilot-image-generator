@@ -1,0 +1,27 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    pkg-config (1.5.1)
+    regexp_parser (2.6.1)
+    rexml (3.2.5)
+    rmagick (5.1.0)
+      pkg-config (~> 1.4)
+    rubyzip (2.3.2)
+    selenium-webdriver (4.7.1)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
+    watir (7.1.0)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (~> 4.0)
+    websocket (1.2.9)
+
+PLATFORMS
+  arm64-darwin-21
+
+DEPENDENCIES
+  rmagick
+  watir
+
+BUNDLED WITH
+   2.3.4
