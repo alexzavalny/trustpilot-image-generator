@@ -1,7 +1,7 @@
 screenshot_file_name: "screenshot.png"
 cropped_image_file_name: "trustpilot_badge.png"
 company_name: oneride.eu
-crop_x: 530
-crop_y: 305
+crop_x: 470
+crop_y: 355
 crop_width: 520
 crop_height: 330

@@ -7,3 +7,4 @@ end
 
 gem 'watir'
 gem 'rmagick'
+gem 'double-bag-ftps'
