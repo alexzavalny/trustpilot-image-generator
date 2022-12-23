@@ -1,0 +1,7 @@
+screenshot_file_name: "./result/screenshot.png"
+cropped_image_file_name: "./result/trustpilot_badge.png"
+company_name: oneride.eu
+crop_x: 490
+crop_y: 260
+crop_width: 520
+crop_height: 290

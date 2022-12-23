@@ -1,13 +1,13 @@
 require 'watir'
 require 'open-uri'
 require 'rmagick'
-require 'net/ftp'
-require 'double_bag_ftps'
 
 BROWSER_TYPE = :chrome
-JAVASCRIPT_CODE_THAT_REMOVES_ELEMENT = "document.getElementById('onetrust-consent-sdk').remove()"
-CONFIG_FILE_NAME = "config.yml"
-FTP_CONFIG_FILE_NAME = "ftp_config.yml"
+JAVASCRIPT_CODE_THAT_REMOVES_COOKIES_BANNER = "document.getElementById('onetrust-consent-sdk').remove()"
+JAVASCRIPT_CODE_THAT_REMOVES_COUNTY_BANNER = "try { document.getElementsByClassName('country-banner_countryBanner___Blnk')[0].remove() } catch { } "
+
+CONFIG_FILE_NAME = "./config/config.yml"
+FTP_CONFIG_FILE_NAME = "./config/ftp_config.yml"
 
 config = YAML.load_file(CONFIG_FILE_NAME)
 SCREENSHOT_FILE_NAME = config["screenshot_file_name"]
@@ -17,10 +17,10 @@ CROP_WIDTH, CROP_HEIGHT = config["crop_width"], config["crop_height"]
 URL_PREFIX = "https://www.trustpilot.com/review/"
 COMPANY_NAME = config["company_name"]
 
-ftp_config = YAML.load_file(FTP_CONFIG_FILE_NAME)
-FTP_HOST = ftp_config["host"]
-FTP_USER = ftp_config["user"]
-FTP_PASSWORD = ftp_config["password"]
+# ftp_config = YAML.load_file(FTP_CONFIG_FILE_NAME)
+# FTP_HOST = ftp_config["host"]
+# FTP_USER = ftp_config["user"]
+# FTP_PASSWORD = ftp_config["password"]
 
 # # generated url 
 url = "#{URL_PREFIX}#{COMPANY_NAME}"
@@ -35,7 +35,8 @@ browser.goto url
 puts "Clicking on the button to close the modal..."
 #button_to_close_modal = "onetrust-accept-btn-handler"
 #browser.button(id: button_to_close_modal).click
-browser.execute_script(JAVASCRIPT_CODE_THAT_REMOVES_ELEMENT)
+browser.execute_script(JAVASCRIPT_CODE_THAT_REMOVES_COOKIES_BANNER)
+browser.execute_script(JAVASCRIPT_CODE_THAT_REMOVES_COUNTY_BANNER)
 
 puts "Saving screenshot..."
 browser.screenshot.save SCREENSHOT_FILE_NAME
@@ -56,7 +57,4 @@ cropped_image = screenshot.crop(CROP_X, CROP_Y, CROP_WIDTH, CROP_HEIGHT)
 #save the cropped image
 puts "Saving cropped image..."
 cropped_image.write(CROPPED_IMAGE_FILE_NAME)
-
-# upload the cropped image to the ftp server
-puts "Uploading image to ftp server..."
 
