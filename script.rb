@@ -33,8 +33,6 @@ puts "Going to url #{url}..."
 browser.goto url
 
 puts "Clicking on the button to close the modal..."
-#button_to_close_modal = "onetrust-accept-btn-handler"
-#browser.button(id: button_to_close_modal).click
 browser.execute_script(JAVASCRIPT_CODE_THAT_REMOVES_COOKIES_BANNER)
 browser.execute_script(JAVASCRIPT_CODE_THAT_REMOVES_COUNTY_BANNER)
 
